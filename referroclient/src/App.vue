@@ -1,9 +1,14 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <div class="brand">Referro</div>
+    <div class="actions">
+      <router-link to="/">Home</router-link>
+      <router-link to="/dashboard/overview">Dashboard</router-link>
+      <router-link to="/contact">Contact</router-link>
+      <router-link to="/about">About</router-link>
+    </div>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <style>
@@ -14,17 +19,28 @@
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
-  padding: 30px;
+  /* border: 2px solid black; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: 20px auto;
 }
-
-#nav a {
+.brand {
+  color: #0f3057;
+  font-size: 25px;
   font-weight: bold;
-  color: #2c3e50;
+  cursor: pointer;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+a {
+  color: black;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 5px 10px;
+}
+.router-link-active {
+  color: #0f3057;
+  font-weight: bold;
 }
 </style>
