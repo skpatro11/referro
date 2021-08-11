@@ -12,6 +12,21 @@
 </template>
 
 <style>
+:root {
+  --clr-bg: hsla(152, 100%, 97%, 1);
+  --clr-primary: hsla(152, 100%, 93%, 1);
+  --clr-text: hsla(152, 100%, 22%, 1);
+  --clr-dark: hsla(152, 100%, 10%, 1);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+button {
+  border: none;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
