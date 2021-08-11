@@ -1,1 +1,1 @@
-web: gunicorn referroserver/referrobackend.wsgi
+web: gunicorn referro.wsgi
