@@ -3,6 +3,7 @@
     <div class="brand">Referro</div>
     <div class="actions">
       <router-link to="/">Home</router-link>
+      <router-link to="/auth">Auth</router-link>
       <router-link to="/dashboard/overview">Dashboard</router-link>
       <router-link to="/contact">Contact</router-link>
       <router-link to="/about">About</router-link>
