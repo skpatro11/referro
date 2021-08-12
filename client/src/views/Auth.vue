@@ -28,8 +28,11 @@ export default {
     const showLogin = ref(true);
     const router = useRouter();
 
+    console.log(store.state.isAuthenticated);
+
     const enterDashboard = () => {
       store.state.isAuthenticated = true;
+      console.log(store.state.isAuthenticated);
       router.push({ name: "Programs" });
     };
 

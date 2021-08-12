@@ -33,10 +33,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      isAuthenticated: localStorage.getItem("token") ? "true" : "false",
-    };
+  computed: {
+    isAuthenticated() {
+      console.log(this.$store.state.isAuthenticated);
+      return this.$store.state.isAuthenticated;
+    },
   },
   methods: {
     handleLogout() {
