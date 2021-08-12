@@ -1,13 +1,27 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <input
-      type="text"
-      required
-      placeholder="display name"
-      v-model="displayName"
-    />
-    <input type="email" required placeholder="email" v-model="email" />
-    <input type="password" required placeholder="password" v-model="password" />
+    <div class="input-field">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        required
+        placeholder="display name"
+        v-model="displayName"
+      />
+    </div>
+    <div class="input-field">
+      <label for="email">Email</label>
+      <input type="email" required placeholder="email" v-model="email" />
+    </div>
+    <div class="input-field">
+      <label for="password">Password</label>
+      <input
+        type="password"
+        required
+        placeholder="password"
+        v-model="password"
+      />
+    </div>
     <div class="error">{{ error }}</div>
     <button>Sign up</button>
   </form>
@@ -39,4 +53,9 @@ export default {
 </script>
 
 <style>
+.input-field {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
 </style>

@@ -1,19 +1,16 @@
 <template>
   <div class="welcome container">
-    <p>Welcome</p>
     <div v-if="showLogin">
-      <h2>Login</h2>
+      <h2>Sign in to your account</h2>
       <Login @login="enterDashboard" />
       <p>
-        No accounts yet? <span @click="showLogin = false">Signup</span> instead
+        Don't have a account?<span @click="showLogin = false">Create Here</span>
       </p>
     </div>
     <div v-else>
-      <h2>Sign up</h2>
+      <h2>Create a new account</h2>
       <Signup @signup="enterDashboard" />
-      <p>
-        Already registered? <span @click="showLogin = true">Login</span> instead
-      </p>
+      <p>Already registered? <span @click="showLogin = true">Login</span></p>
     </div>
   </div>
 </template>
@@ -48,21 +45,23 @@ export default {
   margin: 10px auto;
 }
 .container {
-  width: 90%;
-  max-width: 960px;
-  margin: 40px auto;
-  border-radius: 20px;
-  box-shadow: 2px 4px 6px rgba(28, 6, 49, 0.1);
-  background: white;
+  max-width: 500px;
+  width: 100%;
+  padding: 3em 5em;
+  background: var(--clr-primary);
+  border: 1px solid #a8ffd6;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+  margin: 0 auto;
 }
 .welcome form {
   /* color: white; */
   width: 300px;
   margin: 20px auto;
 }
-.welcome label {
-  display: block;
-  margin: 20px 0 10px;
+.auth-container label {
+  color: hsla(152, 100%, 22%, 0.75);
+  font-size: 1rem;
 }
 .welcome input {
   width: 100%;
