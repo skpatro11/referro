@@ -37,6 +37,9 @@ export default {
   async mounted() {
     const res = await authInstance.get("programs/");
     this.programs = res.data;
+    if (this.programs) {
+      this.fetchMembers(this.programs[0].id);
+    }
   },
   methods: {
     async fetchMembers(id) {

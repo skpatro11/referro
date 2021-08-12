@@ -35,9 +35,13 @@ export default {
   async mounted() {
     const res = await authInstance.get("programs/");
     this.programs = res.data;
+    if (this.programs) {
+      this.fetchOrders(this.programs[0].id);
+    }
   },
   methods: {
     async fetchOrders(id) {
+      console.log("orders called");
       const res = await authInstance.get(`programs/${id}/orders`);
       if (res.data) {
         this.showTable = true;
