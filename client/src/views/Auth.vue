@@ -1,5 +1,5 @@
 <template>
-  <div class="welcome container">
+  <div class="welcome auth-container">
     <div v-if="showLogin">
       <h2>Sign in to your account</h2>
       <Login @login="enterDashboard" />
@@ -44,7 +44,7 @@ export default {
   border-radius: 10px;
   margin: 10px auto;
 }
-.container {
+.auth-container {
   max-width: 500px;
   width: 100%;
   padding: 3em 5em;
@@ -59,7 +59,7 @@ export default {
   width: 300px;
   margin: 20px auto;
 }
-.auth-container label {
+.auth-auth-container label {
   color: hsla(152, 100%, 22%, 0.75);
   font-size: 1rem;
 }
@@ -81,7 +81,7 @@ export default {
   text-decoration: underline;
   font-weight: bold;
 }
-.container {
+.auth-container {
   width: 90%;
   max-width: 960px;
   margin: 80px auto;
@@ -93,7 +93,7 @@ export default {
   color: #ff3f80;
   font-size: 14px;
 }
-.container button {
+.auth-container button {
   cursor: pointer;
   text-decoration: none;
   background: #5ae4ca;

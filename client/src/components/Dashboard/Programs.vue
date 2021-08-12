@@ -28,8 +28,4 @@ export default {
 </script>
 
 <style>
-.programs {
-  /* border: 2px solid black; */
-  margin-left: 5%;
-}
 </style>

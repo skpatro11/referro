@@ -1,31 +1,30 @@
 <template>
-  <div id="nav">
-    <div class="brand">Referro</div>
-    <div class="actions">
-      <router-link to="/">Home</router-link>
-      <router-link to="/auth">Auth</router-link>
-      <router-link to="/dashboard/overview">Dashboard</router-link>
-      <router-link to="/contact">Contact</router-link>
-      <router-link to="/about">About</router-link>
+  <div class="container">
+    <div id="nav">
+      <div class="brand">Referro</div>
+      <div class="actions">
+        <router-link to="/">Home</router-link>
+        <router-link to="/auth">Auth</router-link>
+        <router-link to="/dashboard/overview">Dashboard</router-link>
+        <router-link to="/contact">Contact</router-link>
+        <router-link to="/about">About</router-link>
+      </div>
     </div>
+    <router-view />
   </div>
-  <router-view />
 </template>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   color: #2c3e50;
 }
 #nav {
-  /* border: 2px solid black; */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
   margin: 20px auto;
 }
 .brand {

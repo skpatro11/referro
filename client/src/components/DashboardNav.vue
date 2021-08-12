@@ -22,7 +22,6 @@ export default {};
   width: 70%;
   display: flex;
   flex-direction: row;
-  margin-left: 5%;
   border-bottom: 1px solid rgba(0, 140, 74, 0.2);
 }
 .router-link-active {

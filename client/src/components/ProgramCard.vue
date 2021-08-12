@@ -1,23 +1,43 @@
 <template>
-  <div class="card">
-    <div class="card__header">
-      <h5>{{ program.name }}</h5>
-      <p>₹{{ program.incentive }}</p>
+  <div class="text-start mt-3">
+    <div>
+      ID: <span>{{ program.id }}</span>
     </div>
-    <div class="card__body" v-show="program.access_token">
-      <p class="access_token">
-        Access Token: <span>{{ program.access_token }}</span>
-      </p>
-      <button id="regenerateToken" @click="generateToken">Regenerate</button>
-      <button href="#" class="btn-sm">COPY</button>
+    <div class="card mt-2">
+      <div
+        class="card__header d-flex align-items-baseline justify-content-between"
+      >
+        <h5>{{ program.name }}</h5>
+        <p>₹{{ program.incentive }}</p>
+      </div>
+      <div class="card__body mt-1" v-show="program.access_token">
+        <div class="d-flex align-items-baseline">
+          Access Token
+          <button
+            id="regenerateToken"
+            class="btn-outline-sm ms-2"
+            @click="generateToken"
+          >
+            Re-generate
+          </button>
+        </div>
+        <div class="d-flex align-items-baseline mt-1">
+          <spann class="access_token">{{ program.access_token }}</spann>
+          <button href="#" class="btn-sm ms-4">COPY</button>
+        </div>
+      </div>
+      <div v-show="!program.access_token">
+        <button
+          id="generateToken"
+          class="btn-outline-sm"
+          @click="generateToken"
+        >
+          Generate Access Token
+        </button>
+      </div>
+      <div class="rect-1"></div>
+      <div class="rect-2"></div>
     </div>
-    <div v-show="!program.access_token">
-      <button id="generateToken" @click="generateToken">
-        Generate Access Token
-      </button>
-    </div>
-    <div class="rect-1"></div>
-    <div class="rect-2"></div>
   </div>
 </template>
 
@@ -42,18 +62,9 @@ export default {
   padding: 1.8em;
   background: linear-gradient(90deg, #dbffee 0%, rgba(219, 255, 238, 0) 100%);
   border: 1px solid #a8ffd6;
-  border-radius: 5px;
-  max-width: 500px;
-  width: 100%;
+  width: 600px;
   position: relative;
   overflow: hidden;
-  margin: 10px 0px;
-}
-
-.card__header {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
 }
 
 .card__header h5 {
@@ -61,6 +72,7 @@ export default {
   font-weight: 600;
   color: var(--clr-text);
 }
+
 .card__header p {
   font-size: 1.12rem;
   font-weight: 600;
@@ -68,14 +80,12 @@ export default {
 }
 
 .card__body {
-  margin-top: 1em;
-  display: flex;
   font-size: 1rem;
   color: var(--clr-text);
 }
 
-.card__body button {
-  margin-left: 0.7em;
+.access_token {
+  font-size: 0.8rem;
 }
 
 .btn-sm {
@@ -84,7 +94,26 @@ export default {
   border-radius: 15px;
   background: hsla(152, 100%, 85%, 1);
   text-transform: uppercase;
-  cursor: pointer;
+}
+
+.btn-underline-sm {
+  color: var(--clr-text);
+  font-size: 0.8rem;
+  padding: 0.3em 1.2em;
+  border-radius: 15px;
+  background: transparent;
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
+.btn-outline-sm {
+  color: var(--clr-text);
+  font-size: 0.8rem;
+  padding: 0.3em 1.2em;
+  border-radius: 15px;
+  background: transparent;
+  border: 1px solid var(--clr-text);
+  text-transform: uppercase;
 }
 
 .rect-1 {
@@ -108,39 +137,5 @@ export default {
   right: -15%;
   background: hsla(152, 100%, 92%, 1);
   z-index: -1;
-}
-#generateToken {
-  cursor: pointer;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 10px;
-
-  position: static;
-  width: 180px;
-  height: 40px;
-  left: 0px;
-
-  background: #057baa;
-  color: white;
-  border: none;
-  box-shadow: 0px 7px 16px rgba(0, 88, 122, 0.1),
-    0px 4px 9px rgba(0, 88, 122, 0.2);
-  border-radius: 5px;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  margin: 15px 0px;
-}
-.access_token {
-  text-align: left;
-}
-.access_token span {
-  color: #00587a;
 }
 </style>
