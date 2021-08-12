@@ -1,4 +1,3 @@
-from django.db.models import query
 from orders.serializers import OrderSerializer
 from rest_framework import generics, status
 from rest_framework.views import APIView
@@ -11,7 +10,7 @@ from django.http import Http404
 
 
 class ProgramListView(APIView):
-    def verify_access_token(self, program, access_token):
+    def valid_access_token(self, program, access_token):
         if not str(program.access_token) == access_token:
             return False
         return True
@@ -20,7 +19,7 @@ class ProgramListView(APIView):
         try:
             program = Program.objects.get(pk=pk)
             access_token = request.META['HTTP_PROGRAM_ACCESS_TOKEN']
-            if not self.verify_access_token(program, access_token):
+            if not self.valid_access_token(program, access_token):
                 return Response({'detail': 'Invalid Access Token'}, status=status.HTTP_403_FORBIDDEN)
             serializer = ProgramSerializer(program)
             return Response(serializer.data, status=status.HTTP_200_OK)
@@ -31,7 +30,7 @@ class ProgramListView(APIView):
 class MemberListView(generics.ListCreateAPIView):
     serializer_class = MemberSerializer
 
-    def verify_access_token(self, program, access_token):
+    def valid_access_token(self, program, access_token):
         if not str(program.access_token) == access_token:
             return False
         return True
@@ -40,7 +39,7 @@ class MemberListView(generics.ListCreateAPIView):
         try:
             program = Program.objects.get(pk=pk)
             access_token = request.META['HTTP_PROGRAM_ACCESS_TOKEN']
-            if not self.verify_access_token(program, access_token):
+            if not self.valid_access_token(program, access_token):
                 return Response({'detail': 'Invalid Access Token'}, status=status.HTTP_403_FORBIDDEN)
 
             queryset = program.members.all()
@@ -58,7 +57,7 @@ class MemberListView(generics.ListCreateAPIView):
         try:
             program = Program.objects.get(pk=pk)
             access_token = request.META['HTTP_PROGRAM_ACCESS_TOKEN']
-            if not self.verify_access_token(program, access_token):
+            if not self.valid_access_token(program, access_token):
                 return Response({'detail': 'Invalid Access Token'}, status=status.HTTP_403_FORBIDDEN)
 
             serializer = MemberSerializer(data=request.data)
@@ -73,7 +72,7 @@ class MemberListView(generics.ListCreateAPIView):
 class OrdersListView(generics.ListCreateAPIView):
     serializer_class = OrderSerializer
 
-    def verify_access_token(self, program, access_token):
+    def valid_access_token(self, program, access_token):
         if not str(program.access_token) == access_token:
             return False
         return True
@@ -82,7 +81,7 @@ class OrdersListView(generics.ListCreateAPIView):
         try:
             program = Program.objects.get(pk=pk)
             access_token = request.META['HTTP_PROGRAM_ACCESS_TOKEN']
-            if not self.verify_access_token(program, access_token):
+            if not self.valid_access_token(program, access_token):
                 return Response({'detail': 'Invalid Access Token'}, status=status.HTTP_403_FORBIDDEN)
 
             queryset = program.program_orders.all()
@@ -100,7 +99,7 @@ class OrdersListView(generics.ListCreateAPIView):
         try:
             program = Program.objects.get(pk=pk)
             access_token = request.META['HTTP_PROGRAM_ACCESS_TOKEN']
-            if not self.verify_access_token(program, access_token):
+            if not self.valid_access_token(program, access_token):
                 return Response({'detail': 'Invalid Access Token'}, status=status.HTTP_403_FORBIDDEN)
 
             try:
