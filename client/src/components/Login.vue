@@ -2,21 +2,11 @@
   <form class="d-flex flex-column" @submit.prevent="handleSubmit">
     <div class="mb-3 text-start">
       <label class="form-label" for="email">Email</label>
-      <input
-        class="form-control"
-        type="email"
-        required
-        v-model="email"
-      />
+      <input class="form-control" type="email" required v-model="email" />
     </div>
     <div class="mb-3 text-start">
       <label class="form-label" for="password">Password</label>
-      <input
-        class="form-control"
-        type="password"
-        required
-        v-model="password"
-      />
+      <input class="form-control" type="password" required v-model="password" />
     </div>
     <div class="error">{{ error }}</div>
     <button class="btn mt-3">Log in</button>
@@ -35,10 +25,8 @@ export default {
     const { error, login } = useLogin();
 
     const handleSubmit = async () => {
-      // console.log(email.value, password.value)
       await login(email.value, password.value);
       if (!error.value) {
-        // console.log("User Logged In")
         context.emit("login");
       }
     };

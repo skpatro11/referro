@@ -23,7 +23,7 @@
 import DashboardNav from "../DashboardNav.vue";
 import MemberTable from "../MemberTable.vue";
 import Spinner from "../Spinner.vue";
-import { authInstance } from "../../services/";
+import axios from "axios";
 
 export default {
   components: {
@@ -42,8 +42,14 @@ export default {
     };
   },
   async mounted() {
-    const res = await authInstance.get("programs/");
+    const res = await axios.get("https://referro.herokuapp.com/programs/", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+
     this.programs = res.data;
+
     if (this.programs) {
       this.fetchMembers(this.programs[0].id);
       this.selectedProgram = this.programs[0].id;
@@ -51,12 +57,19 @@ export default {
   },
   methods: {
     async fetchMembers(id) {
-      const res = await authInstance.get(`programs/${id}/members/`);
+      const res = await axios.get(
+        `https://referro.herokuapp.com/programs/${id}/members`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       if (res.data) {
         this.showTable = true;
       }
       this.members = res.data.results;
-      console.log(typeof this.members.length);
+
       this.prev = res.data.prev;
       this.next = res.data.next;
       this.selectedProgram = id;

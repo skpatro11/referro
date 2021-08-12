@@ -42,14 +42,14 @@
 </template>
 
 <script>
-import { authInstance } from "../services/";
+import axios from "axios";
 
 export default {
   props: ["program"],
   methods: {
     async generateToken() {
-      const res = await authInstance.get(
-        `programs/access_token/${this.program.id}/`
+      const res = await axios.get(
+        `https://referro.herokuapp.com/programs/access_token/${this.program.id}/`
       );
       this.program.access_token = res.data.access_token;
     },

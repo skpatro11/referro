@@ -23,7 +23,7 @@
 import DashboardNav from "../DashboardNav.vue";
 import OrderTable from "../OrderTable.vue";
 import Spinner from "../Spinner.vue";
-import { authInstance } from "../../services";
+import axios from "axios";
 
 export default {
   components: {
@@ -40,7 +40,12 @@ export default {
     };
   },
   async mounted() {
-    const res = await authInstance.get("programs/");
+    const res = await axios.get("https://referro.herokuapp.com/programs/", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+
     this.programs = res.data;
     if (this.programs) {
       this.fetchOrders(this.programs[0].id);
@@ -49,8 +54,14 @@ export default {
   },
   methods: {
     async fetchOrders(id) {
-      console.log("orders called");
-      const res = await authInstance.get(`programs/${id}/orders`);
+      const res = await axios.get(
+        `https://referro.herokuapp.com/programs/${id}/orders/`,
+        {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        }
+      );
       if (res.data) {
         this.showTable = true;
       }

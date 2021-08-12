@@ -14,7 +14,7 @@
 import DashboardNav from "../DashboardNav.vue";
 import ProgramCard from "../ProgramCard.vue";
 import Spinner from "../Spinner.vue";
-import { authInstance } from "../../services";
+import axios from "axios";
 
 export default {
   components: {
@@ -28,7 +28,11 @@ export default {
     };
   },
   async mounted() {
-    const res = await authInstance.get("programs/");
+    const res = await axios.get("https://referro.herokuapp.com/programs/", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
     this.programs = res.data;
   },
 };

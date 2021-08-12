@@ -3,14 +3,12 @@
     <div class="brand">Referro</div>
     <div class="actions">
       <router-link to="/">Home</router-link>
-      <router-link to="/auth">Auth</router-link>
-      <router-link v-if="isAuthenticated" to="/dashboard/programs"
-        >Dashboard</router-link
-      >
-      <router-link to="/contact">Contact</router-link>
+      <router-link to="/auth">Login</router-link>
+      <router-link to="/dashboard/programs">Dashboard</router-link>
       <router-link to="/about">About</router-link>
-      <span v-if="isAuthenticated" id="logout" @click="handleLogout"
-        ><svg
+      <span id="logout" @click="handleLogout"
+        >Logout
+        <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -35,8 +33,7 @@
 export default {
   computed: {
     isAuthenticated() {
-      console.log(this.$store.state.isAuthenticated);
-      return this.$store.state.isAuthenticated;
+      return localStorage.getItem("token") ? true : false;
     },
   },
   methods: {
