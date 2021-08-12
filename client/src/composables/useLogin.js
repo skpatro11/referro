@@ -10,12 +10,6 @@ const login = async (email, password) => {
   try {
     // const url = "https://referro.herokuapp.com/authentication/token/";
     const url = "authentication/token/";
-
-    // const res = await axios.post(url, {
-    //   email,
-    //   password,
-    // });
-
     const res = await baseInstance.post(url, {
       email,
       password,

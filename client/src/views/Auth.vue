@@ -20,6 +20,7 @@ import Signup from "../components/Signup.vue";
 import Login from "../components/Login.vue";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import store from "../store";
 
 export default {
   components: { Signup, Login },
@@ -28,7 +29,8 @@ export default {
     const router = useRouter();
 
     const enterDashboard = () => {
-      router.push({ name: "Overview" });
+      store.state.isAuthenticated = true;
+      router.push({ name: "Programs" });
     };
 
     return { showLogin, enterDashboard };

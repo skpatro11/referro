@@ -22,7 +22,7 @@
           </button>
         </div>
         <div class="d-flex align-items-baseline mt-1">
-          <spann class="access_token">{{ program.access_token }}</spann>
+          <span class="access_token">{{ program.access_token }}</span>
           <button href="#" class="btn-sm ms-4">COPY</button>
         </div>
       </div>
