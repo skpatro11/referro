@@ -1,16 +1,20 @@
 <template>
-  <div class="welcome auth-container">
+  <div class="auth-container rounded text-start mx-auto">
     <div v-if="showLogin">
-      <h2>Sign in to your account</h2>
+      <h2 class="mb-4">Sign in to your account</h2>
       <Login @login="enterDashboard" />
-      <p>
-        Don't have a account?<span @click="showLogin = false">Create Here</span>
+      <p class="mt-4">
+        Don't have a account?
+        <span @click="showLogin = false"> <u>Create Here</u></span>
       </p>
     </div>
     <div v-else>
-      <h2>Create a new account</h2>
+      <h2 class="mb-4">Create a new account</h2>
       <Signup @signup="enterDashboard" />
-      <p>Already registered? <span @click="showLogin = true">Login</span></p>
+      <p class="mt-4">
+        Already registered?
+        <span @click="showLogin = true"><u>Login Here</u></span>
+      </p>
     </div>
   </div>
 </template>
@@ -42,70 +46,40 @@ export default {
 </script>
 
 <style>
-.welcome {
-  text-align: center;
-  padding: 50px 0;
-  color: #00587a;
-  border-radius: 10px;
-  margin: 10px auto;
-}
 .auth-container {
-  max-width: 500px;
-  width: 100%;
-  padding: 3em 5em;
-  background: var(--clr-primary);
+  background: #dbffee;
   border: 1px solid #a8ffd6;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.07);
-  border-radius: 5px;
-  margin: 0 auto;
+  padding: 3em 4.5em;
+  max-width: 600px;
 }
-.welcome form {
-  /* color: white; */
-  width: 300px;
-  margin: 20px auto;
+
+.auth-container h2 {
+  font-size: 1.56rem;
+  font-weight: 500;
 }
-.auth-auth-container label {
-  color: hsla(152, 100%, 22%, 0.75);
-  font-size: 1rem;
+.auth-container label {
+  color: rgba(0, 112, 59, 0.9);
 }
-.welcome input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 20px;
-  outline: none;
-  color: #999;
-  border: 1px solid #eee;
-  margin: 10px auto;
+.auth-container input {
+  background: #b5ffdc;
+  padding: 0.6em 1em;
+  color: var(--clr-text);
+  border: none;
 }
-.welcome button {
-  margin: 20px auto;
-  outline: none;
+
+.auth-container button {
+  background: var(--clr-dark);
+  color: var(--clr-primary);
+  padding: 0.6em 0em;
 }
-.welcome span {
-  cursor: pointer;
-  text-decoration: underline;
-  font-weight: bold;
-}
-.auth-container {
-  width: 90%;
-  max-width: 960px;
-  margin: 80px auto;
-  border-radius: 20px;
-  box-shadow: 2px 4px 6px rgba(28, 6, 49, 0.1);
-  background: white;
-}
+
 .error {
   color: #ff3f80;
   font-size: 14px;
 }
-.auth-container button {
-  cursor: pointer;
-  text-decoration: none;
-  background: #5ae4ca;
-  color: white;
-  font-weight: bold;
-  border: 0;
-  border-radius: 20px;
-  padding: 10px 20px;
+
+.auth-container .form-control:focus {
+  background: #b5ffdc;
 }
 </style>
