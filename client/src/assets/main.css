@@ -5,6 +5,7 @@
   --clr-primary: hsla(152, 100%, 93%, 1);
   --clr-text: hsla(152, 100%, 22%, 1);
   --clr-dark: hsla(152, 100%, 10%, 1);
+  --clr-primary-text: #00587a;
 }
 body {
   background: var(--clr-bg);

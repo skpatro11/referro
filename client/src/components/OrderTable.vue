@@ -1,23 +1,24 @@
 <template>
-  <div class="table-container">
-    <table>
-      <tr>
-        <th>Member Id</th>
-        <th>Program</th>
-        <th>Claim Amount</th>
-        <th>Charge Amount</th>
-        <th>Status</th>
-        <th>Created On</th>
-      </tr>
-      <tr v-for="order in orders" :key="order.id">
-        <td>{{ order.member }}</td>
-        <td>{{ order.program }}</td>
-        <td>{{ order.claim_amount }}</td>
-        <td>{{ order.charge_amount }}</td>
-        <td>{{ order.status }}</td>
-        <td>{{ order.created_at }}</td>
-      </tr>
-    </table>
+  <table v-if="orders.length" class="table-container">
+    <tr>
+      <th>Member Id</th>
+      <th>Program</th>
+      <th>Claim Amount</th>
+      <th>Charge Amount</th>
+      <th>Status</th>
+      <th>Created On</th>
+    </tr>
+    <tr v-for="order in orders" :key="order.id">
+      <td>{{ order.member }}</td>
+      <td>{{ order.program }}</td>
+      <td>{{ order.claim_amount }}</td>
+      <td>{{ order.charge_amount }}</td>
+      <td>{{ order.status }}</td>
+      <td>{{ order.created_at.substring(0, 10) }}</td>
+    </tr>
+  </table>
+  <div v-else class="no__data">
+    <h3>No orders yet!</h3>
   </div>
 </template>
 
@@ -58,5 +59,14 @@ td {
 
 tr:hover {
   background: #cfffea;
+}
+
+.no__data {
+  /* border: 2px solid black; */
+  color: var(--clr-primary-text);
+  flex-direction: row;
+  text-align: left;
+  width: 60%;
+  margin: 15px auto;
 }
 </style>
