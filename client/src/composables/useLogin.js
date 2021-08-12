@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import axios from "axios";
+import { baseInstance } from "../services";
 
 const error = ref(null);
 
@@ -7,12 +8,19 @@ const login = async (email, password) => {
   error.value = null;
 
   try {
-    const url = "https://referro.herokuapp.com/authentication/token/";
+    // const url = "https://referro.herokuapp.com/authentication/token/";
+    const url = "authentication/token/";
 
-    const res = await axios.post(url, {
+    // const res = await axios.post(url, {
+    //   email,
+    //   password,
+    // });
+
+    const res = await baseInstance.post(url, {
       email,
       password,
     });
+
     error.value = null;
     localStorage.setItem("token", res.data.access);
     return res;

@@ -1,12 +1,20 @@
 <template>
   <div class="card">
     <div class="card__header">
-      <h5>Zerodha Mutual Fund</h5>
-      <p>₹45</p>
+      <h5>{{ program.name }}</h5>
+      <p>₹{{ program.incentive }}</p>
     </div>
-    <div class="card__body">
-      <p>Access Token: IJI88990</p>
+    <div class="card__body" v-show="program.access_token">
+      <p class="access_token">
+        Access Token: <span>{{ program.access_token }}</span>
+      </p>
+      <button id="regenerateToken" @click="generateToken">Regenerate</button>
       <button href="#" class="btn-sm">COPY</button>
+    </div>
+    <div v-show="!program.access_token">
+      <button id="generateToken" @click="generateToken">
+        Generate Access Token
+      </button>
     </div>
     <div class="rect-1"></div>
     <div class="rect-2"></div>
@@ -14,7 +22,19 @@
 </template>
 
 <script>
-export default {};
+import { authInstance } from "../services/";
+
+export default {
+  props: ["program"],
+  methods: {
+    async generateToken() {
+      const res = await authInstance.get(
+        `programs/access_token/${this.program.id}/`
+      );
+      this.program.access_token = res.data.access_token;
+    },
+  },
+};
 </script>
 
 <style>
@@ -64,6 +84,7 @@ export default {};
   border-radius: 15px;
   background: hsla(152, 100%, 85%, 1);
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .rect-1 {
@@ -87,5 +108,39 @@ export default {};
   right: -15%;
   background: hsla(152, 100%, 92%, 1);
   z-index: -1;
+}
+#generateToken {
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 10px;
+
+  position: static;
+  width: 180px;
+  height: 40px;
+  left: 0px;
+
+  background: #057baa;
+  color: white;
+  border: none;
+  box-shadow: 0px 7px 16px rgba(0, 88, 122, 0.1),
+    0px 4px 9px rgba(0, 88, 122, 0.2);
+  border-radius: 5px;
+
+  /* Inside Auto Layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+  margin: 15px 0px;
+}
+.access_token {
+  text-align: left;
+}
+.access_token span {
+  color: #00587a;
 }
 </style>
