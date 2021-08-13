@@ -17,7 +17,7 @@
     <div v-else>
       <h3>There is no information Available</h3>
     </div>
-    <div id="page">
+    <div class="page">
       <button
         class="btn btn-sm btn-outline-success"
         v-if="previous"

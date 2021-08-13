@@ -17,7 +17,7 @@
     <div v-else>
       <h3>There is no information Available</h3>
     </div>
-    <div id="page">
+    <div class="page">
       <button
         class="btn btn-sm btn-outline-success"
         v-if="previous"
@@ -114,4 +114,13 @@ export default {
 </script>
 
 <style>
+.page {
+  margin: 10px auto;
+  display: flex;
+  width: 20%;
+  height: 40px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
 </style>
