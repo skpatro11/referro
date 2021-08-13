@@ -1,24 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
+// Public
 import Home from '../views/Home.vue';
 import About from '../views/About.vue';
-// import Auth from '../views/Auth.vue';
 
+// Dashboard
 import Overview from '../views/dashboard/Overview.vue';
 import Programs from '../views/dashboard/Programs.vue';
 import Members from '../views/dashboard/Members.vue';
 import Orders from '../views/dashboard/Orders.vue';
 import Billing from '../views/dashboard/Billing.vue';
 import Support from '../views/dashboard/Support.vue';
-
-import Login from '../views/Login.vue';
-
-// const requireAuth = (to, from, next) => {
-//   if (localStorage.getItem('token') !== null) {
-//     next();
-//   } else {
-//     next({ name: 'Auth' });
-//   }
-// };
+import Login from '../views/auth/Login.vue';
 
 const routes = [
   {
@@ -31,11 +23,6 @@ const routes = [
     name: 'About',
     component: About,
   },
-  // {
-  //   path: '/auth',
-  //   name: 'Auth',
-  //   component: Auth,
-  // },
   {
     path: '/auth/login',
     name: 'Login',

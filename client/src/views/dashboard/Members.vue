@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import DashboardNav from "../../components/DashboardNav.vue";
-import MemberTable from "../../components/MemberTable.vue";
+import DashboardNav from "../../components/dashboard/DashboardNav.vue";
+import MemberTable from "../../components/dashboard/members/MemberTable.vue";
 import Spinner from "../../components/Spinner.vue";
 import axios from "axios";
 

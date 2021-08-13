@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import DashboardNav from "../../components/DashboardNav.vue";
-import ProgramCard from "../../components/ProgramCard.vue";
+import DashboardNav from "../../components/dashboard/DashboardNav.vue";
+import ProgramCard from "../../components/dashboard/programs/ProgramCard.vue";
 import Spinner from "../../components/Spinner.vue";
 import axios from "axios";
 

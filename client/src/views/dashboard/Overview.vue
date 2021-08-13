@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import DashboardNav from "../../components/DashboardNav.vue";
+import DashboardNav from "../../components/dashboard/DashboardNav.vue";
 import { mapGetters } from 'vuex'
 
 

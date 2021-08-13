@@ -1,5 +1,6 @@
 <template>
   <div class="auth-container rounded text-start mx-auto mt-5">
+    <h2 class="mb-4">Sign in to your account</h2>
     <form class="d-flex flex-column" @submit.prevent="handleLogin">
     <div class="mb-3 text-start">
       <label class="form-label" for="email">Email</label>
@@ -16,8 +17,6 @@
 </template>
 
 <script>
-import axios from 'axios'
-
 export default {
     data () {
     return {
