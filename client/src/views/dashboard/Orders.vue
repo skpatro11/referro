@@ -73,7 +73,6 @@ export default {
       this.selectedProgram = this.programs[0].id;
     }
     this.runSpinner = false;
-    console.log(this.runSpinner);
   },
   methods: {
     async fetchOrders(id) {
