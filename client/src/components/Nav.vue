@@ -1,10 +1,14 @@
 <template>
   <div id="nav">
-    <router-link class="brand" to="/">Referro</router-link>
+    <router-link v-if="currentRouteName === 'Docs'" class="brand" to="/docs"
+      >Referro <span class="docs">DOCS</span>
+    </router-link>
+    <router-link v-else class="brand" to="/">Referro</router-link>
     <div class="actions">
       <router-link to="/">Home</router-link>
       <router-link to="/dashboard/programs">Dashboard</router-link>
       <router-link to="/about">About</router-link>
+      <router-link to="/docs">Docs</router-link>
       <router-link v-if="!loggedIn" to="/auth/login">Login</router-link>
       <span v-if="loggedIn" id="logout" @click="handleLogout"
         >Logout
@@ -37,6 +41,9 @@ export default {
     ...mapGetters({
       loggedIn: "loggedIn",
     }),
+    currentRouteName() {
+      return this.$route.name;
+    },
   },
   methods: {
     handleLogout() {
@@ -52,5 +59,8 @@ export default {
   cursor: pointer;
   margin-left: 10px;
   color: var(--clr-dark);
+}
+.docs {
+  color: var(--clr-text);
 }
 </style>

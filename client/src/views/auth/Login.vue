@@ -39,7 +39,7 @@ export default {
         })
         .then(() => {
           this.$store.dispatch("setUser");
-          this.$router.push({ name: "Overview" });
+          this.$router.push({ name: "Programs" });
         })
         .catch((err) => {
           // this.error = err.response.data.error;
