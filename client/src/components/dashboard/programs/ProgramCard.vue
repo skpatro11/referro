@@ -49,7 +49,7 @@ export default {
   methods: {
     async generateToken() {
       const res = await axios.get(
-        `https://referro.herokuapp.com/programs/access_token/${this.program.id}/`
+        `${process.env.VUE_APP_ROOT_API}/programs/access_token/${this.program.id}/`
       );
       this.program.access_token = res.data.access_token;
     },

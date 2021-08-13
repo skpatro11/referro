@@ -28,7 +28,7 @@ export default {
     };
   },
   async mounted() {
-    const res = await axios.get("https://referro.herokuapp.com/programs/", {
+    const res = await axios.get(`${process.env.VUE_APP_ROOT_API}/programs/`, {
     });
     this.programs = res.data;
   },

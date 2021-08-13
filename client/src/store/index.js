@@ -3,6 +3,7 @@ import axios from 'axios';
 
 export default createStore({
   state: {
+    url: null,
     user: null,
     token: null,
   },
@@ -23,12 +24,15 @@ export default createStore({
       localStorage.removeItem('token');
       location.reload();
     },
+    SET_URL(state, url) {
+      state.url = url;
+    },
   },
   actions: {
     login({ commit }, credentials) {
       return axios
         .post(
-          'https://referro.herokuapp.com/authentication/token/',
+          `${process.env.VUE_APP_ROOT_API}/authentication/token/`,
           credentials
         )
         .then(({ data }) => {
@@ -40,7 +44,7 @@ export default createStore({
     },
     setUser({ commit }) {
       axios
-        .get('https://referro.herokuapp.com/authentication/profile/')
+        .get(`${process.env.VUE_APP_ROOT_API}/authentication/profile/`)
         .then(({ data }) => commit('SET_USER_DATA', data))
         .catch((err) => console.log('Unable to set user data'));
     },

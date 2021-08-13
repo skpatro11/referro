@@ -1,21 +1,39 @@
 <template>
-  <DashboardNav />
-  <div class="programs">
-    <div
-      class="program"
-      v-for="program in programs"
-      :key="program.id"
-      @click="fetchMembers(program.id)"
-      :class="[selectedProgram === program.id ? 'selected' : '']"
-    >
-      {{ program.name }}
+  <div>
+    <DashboardNav />
+    <div class="programs">
+      <div
+        class="program"
+        v-for="program in programs"
+        :key="program.id"
+        @click="fetchMembers(program.id)"
+        :class="[selectedProgram === program.id ? 'selected' : '']"
+      >
+        {{ program.name }}
+      </div>
     </div>
-  </div>
-  <div v-if="showTable">
-    <MemberTable :members="members" :prev="prev" :next="next" />
-  </div>
-  <div v-else>
-    <Spinner />
+    <div v-if="showTable">
+      <MemberTable :members="members" />
+    </div>
+    <div v-else>
+      <Spinner />
+    </div>
+    <div id="page">
+      <button
+        class="btn btn-sm btn-outline-success"
+        v-if="previous"
+        @click="handlePrevious"
+      >
+        previous
+      </button>
+      <button
+        class="btn btn-sm btn-outline-success"
+        v-if="next"
+        @click="handleNext"
+      >
+        Next
+      </button>
+    </div>
   </div>
 </template>
 
@@ -36,14 +54,16 @@ export default {
       programs: [],
       showTable: false,
       members: [],
-      prev: null,
+      previous: null,
       next: null,
       selectedProgram: null,
     };
   },
   async mounted() {
-    const res = await axios.get("https://referro.herokuapp.com/programs/", {
-    });
+    const res = await axios.get(
+      `${process.env.VUE_APP_ROOT_API}/programs/`,
+      {}
+    );
 
     this.programs = res.data;
 
@@ -55,7 +75,7 @@ export default {
   methods: {
     async fetchMembers(id) {
       const res = await axios.get(
-        `https://referro.herokuapp.com/programs/${id}/members`,
+        `${process.env.VUE_APP_ROOT_API}/programs/${id}/members`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),
@@ -70,6 +90,20 @@ export default {
       this.prev = res.data.prev;
       this.next = res.data.next;
       this.selectedProgram = id;
+    },
+    handlePrevious() {
+      axios.get(this.previous).then(({ data }) => {
+        this.members = data.results;
+        this.next = data.next;
+        this.previous = data.previous;
+      });
+    },
+    handleNext() {
+      axios.get(this.next).then(({ data }) => {
+        this.members = data.results;
+        this.next = data.next;
+        this.previous = data.previous;
+      });
     },
   },
 };
