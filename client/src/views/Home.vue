@@ -65,10 +65,16 @@ export default {
   font-weight: 600;
   background: var(--clr-text);
   color: var(--clr-bg);
+  transition: 400ms;
+}
+
+.hero .hero-btn:hover {
+  background: rgb(0, 78, 43);
+  box-shadow: 0px 4px 9px rgba(0, 112, 59, 0.2);
 }
 
 .our-process {
-  margin-top: 5em;
+  margin: 5em 0;
 }
 
 .our-process h2 {

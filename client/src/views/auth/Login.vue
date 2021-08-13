@@ -2,46 +2,51 @@
   <div class="auth-container rounded text-start mx-auto mt-5">
     <h2 class="mb-4">Sign in to your account</h2>
     <form class="d-flex flex-column" @submit.prevent="handleLogin">
-    <div class="mb-3 text-start">
-      <label class="form-label" for="email">Email</label>
-      <input class="form-control" type="email" required v-model="email" />
-    </div>
-    <div class="mb-3 text-start">
-      <label class="form-label" for="password">Password</label>
-      <input class="form-control" type="password" required v-model="password" />
-    </div>
-    <div class="error">{{ error }}</div>
-    <button class="btn mt-3">Log in</button>
-  </form>
+      <div class="mb-3 text-start">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-control" type="email" required v-model="email" />
+      </div>
+      <div class="mb-3 text-start">
+        <label class="form-label" for="password">Password</label>
+        <input
+          class="form-control"
+          type="password"
+          required
+          v-model="password"
+        />
+      </div>
+      <div class="error">{{ error }}</div>
+      <button class="btn mt-3">Log in</button>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
-    data () {
+  data() {
     return {
-      email: '',
-      password: '',
-      error: null
-    }
+      email: "",
+      password: "",
+      error: null,
+    };
   },
   methods: {
-    handleLogin () {
+    handleLogin() {
       this.$store
-        .dispatch('login', {
+        .dispatch("login", {
           email: this.email,
-          password: this.password
+          password: this.password,
         })
         .then(() => {
-          this.$store.dispatch('setUser')
-          this.$router.push({ name: 'Overview' })
+          this.$store.dispatch("setUser");
+          this.$router.push({ name: "Overview" });
         })
-        .catch(err => {
-          this.error = err.response.data.error
-        })
-    }
-  }
-}
+        .catch((err) => {
+          this.error = err.response.data.error;
+        });
+    },
+  },
+};
 </script>
 
 <style>
@@ -66,9 +71,16 @@ export default {
   border: none;
 }
 .auth-container button {
-  background: var(--clr-dark);
+  background: var(--clr-text);
   color: var(--clr-primary);
   padding: 0.6em 0em;
+  transition: 400ms;
+}
+
+.auth-container button:hover {
+  color: var(--clr-primary);
+  background: rgb(0, 92, 49);
+  box-shadow: 0px 4px 9px rgba(0, 112, 59, 0.2);
 }
 .error {
   color: #ff3f80;
