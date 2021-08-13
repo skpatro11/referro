@@ -1,12 +1,17 @@
 <template>
-  <DashboardNav />
-  <div v-if="programs.length">
-    <div class="programs" v-for="program in programs" :key="program.id">
-      <ProgramCard :program="program" />
+  <div>
+    <DashboardNav />
+    <div v-if="programs.length">
+      <div class="programs" v-for="program in programs" :key="program.id">
+        <ProgramCard :program="program" />
+      </div>
     </div>
-  </div>
-  <div v-else>
-    <Spinner />
+    <div v-else-if="runSpinner">
+      <Spinner />
+    </div>
+    <div v-else>
+      <h3>There is no information Available</h3>
+    </div>
   </div>
 </template>
 
@@ -25,12 +30,16 @@ export default {
   data() {
     return {
       programs: [],
+      runSpinner: true,
     };
   },
   async mounted() {
-    const res = await axios.get(`${process.env.VUE_APP_ROOT_API}/programs/`, {
-    });
+    const res = await axios.get(
+      `${process.env.VUE_APP_ROOT_API}/programs/`,
+      {}
+    );
     this.programs = res.data;
+    this.runSpinner = false;
   },
 };
 </script>

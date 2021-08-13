@@ -15,7 +15,7 @@
           Access Token
           <button
             id="regenerateToken"
-            class="btn-outline-sm ms-2"
+            class="btn-underline-sm ms-2"
             @click="generateToken"
           >
             Re-generate
@@ -122,7 +122,7 @@ export default {
   width: 95px;
   border-radius: 100px;
   transform: rotate(-60deg);
-  bottom: -100%;
+  bottom: -90%;
   right: -10%;
   background: hsla(152, 100%, 92%, 1);
   z-index: -1;
@@ -133,7 +133,7 @@ export default {
   width: 95px;
   border-radius: 100px;
   transform: rotate(-60deg);
-  top: -60%;
+  top: -55%;
   right: -15%;
   background: hsla(152, 100%, 92%, 1);
   z-index: -1;
