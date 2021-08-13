@@ -19,3 +19,7 @@ body {
 button {
   border: none;
 }
+
+.form-control:focus {
+  box-shadow: none;
+}

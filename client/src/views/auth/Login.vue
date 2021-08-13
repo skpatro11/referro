@@ -72,9 +72,16 @@ export default {
   border: none;
 }
 .auth-container button {
-  background: var(--clr-dark);
+  background: var(--clr-text);
   color: var(--clr-primary);
   padding: 0.6em 0em;
+  transition: 400ms;
+}
+
+.auth-container button:hover {
+  color: var(--clr-primary);
+  background: rgb(0, 92, 49);
+  box-shadow: 0px 4px 9px rgba(0, 112, 59, 0.2);
 }
 .error {
   color: #ff3f80;
