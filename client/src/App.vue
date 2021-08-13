@@ -1,45 +1,39 @@
 <template>
-  <div id="nav">
-    <div class="brand">Referro</div>
-    <div class="actions">
-      <router-link to="/">Home</router-link>
-      <router-link to="/dashboard/overview">Dashboard</router-link>
-      <router-link to="/contact">Contact</router-link>
-      <router-link to="/about">About</router-link>
-    </div>
+  <div class="container">
+    <Nav />
+    <router-view />
   </div>
-  <router-view />
 </template>
 
-<style>
-:root {
-  --clr-bg: hsla(152, 100%, 97%, 1);
-  --clr-primary: hsla(152, 100%, 93%, 1);
-  --clr-text: hsla(152, 100%, 22%, 1);
-  --clr-dark: hsla(152, 100%, 10%, 1);
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<script>
+import Nav from "../src/components/Nav.vue";
 
-button {
-  border: none;
-}
+export default {
+  components: {
+    Nav,
+  },
+  created() {
+    const tokenString = localStorage.getItem("token");
+    if (tokenString) {
+      this.$store.commit("SET_AUTH_TOKEN", tokenString);
+      this.$store.dispatch("setUser");
+    }
+  },
+};
+</script>
+
+
+<style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
   text-align: center;
   color: #2c3e50;
 }
 #nav {
-  /* border: 2px solid black; */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 90%;
   margin: 20px auto;
 }
 .brand {

@@ -12,17 +12,20 @@
 </template>
 
 <script>
-export default {};
+export default {
+};
 </script>
 
-<style>
+<style scoped>
 .dashboard-actions {
   /* border: 2px solid black; */
   padding: 5px 0px;
   width: 70%;
   display: flex;
   flex-direction: row;
-  margin-left: 5%;
   border-bottom: 1px solid rgba(0, 140, 74, 0.2);
+}
+.router-link-active {
+  text-decoration: underline;
 }
 </style>
