@@ -1,5 +1,5 @@
 from orders.serializers import OrderSerializer
-from rest_framework import generics, status
+from rest_framework import generics, serializers, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from members.models import Member
@@ -116,5 +116,71 @@ class OrdersListView(generics.ListCreateAPIView):
                 serializer.save(program=program)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except Program.DoesNotExist:
+            raise Http404
+
+
+class MemberDetailView(APIView):
+    def valid_access_token(self, program, access_token):
+        if not str(program.access_token) == access_token:
+            return False
+        return True
+
+    def get(self, request, program_id, pk):
+        try:
+            program = Program.objects.get(pk=program_id)
+            access_token = request.META['HTTP_PROGRAM_ACCESS_TOKEN']
+            if not self.valid_access_token(program, access_token):
+                return Response({'detail': 'Invalid Access Token'}, status=status.HTTP_403_FORBIDDEN)
+
+            try:
+                member = Member.objects.get(pk=pk)
+                if not member.program.id == program_id:
+                    return Response({'detail': 'Invalid Access'}, status=status.HTTP_403_FORBIDDEN)
+                serializer = MemberSerializer(member)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            except Member.DoesNotExist:
+                raise Http404
+        except Program.DoesNotExist:
+            raise Http404
+
+    def put(self, request, program_id, pk):
+        try:
+            program = Program.objects.get(pk=program_id)
+            access_token = request.META['HTTP_PROGRAM_ACCESS_TOKEN']
+            if not self.valid_access_token(program, access_token):
+                return Response({'detail': 'Invalid Access Token'}, status=status.HTTP_403_FORBIDDEN)
+
+            try:
+                member = Member.objects.get(pk=pk)
+                if not member.program.id == program_id:
+                    return Response({'detail': 'Invalid Access'}, status=status.HTTP_403_FORBIDDEN)
+                serializer = MemberSerializer(member, data=request.data)
+                if serializer.is_valid():
+                    serializer.save()
+                    return Response(serializer.data)
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            except Member.DoesNotExist:
+                raise Http404
+        except Program.DoesNotExist:
+            raise Http404
+
+    def delete(self, request, program_id, pk):
+        try:
+            program = Program.objects.get(pk=program_id)
+            access_token = request.META['HTTP_PROGRAM_ACCESS_TOKEN']
+            if not self.valid_access_token(program, access_token):
+                return Response({'detail': 'Invalid Access Token'}, status=status.HTTP_403_FORBIDDEN)
+
+            try:
+                member = Member.objects.get(pk=pk)
+                if not member.program.id == program_id:
+                    return Response({'detail': 'Invalid Access'}, status=status.HTTP_403_FORBIDDEN)
+
+                member.delete()
+                return Response(data={'detail': 'Member deleted'})
+            except Member.DoesNotExist:
+                raise Http404
         except Program.DoesNotExist:
             raise Http404

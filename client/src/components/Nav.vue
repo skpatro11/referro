@@ -10,8 +10,8 @@
         >Logout
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
+          width="20"
+          height="20"
           fill="currentColor"
           class="bi bi-box-arrow-right"
           viewBox="0 0 16 16"
@@ -30,17 +30,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   computed: {
     ...mapGetters({
-      loggedIn: 'loggedIn'
+      loggedIn: "loggedIn",
     }),
   },
   methods: {
     handleLogout() {
-      this.$store.dispatch('logout')
+      this.$store.dispatch("logout");
       this.$router.push({ name: "Home" });
     },
   },
@@ -51,6 +51,6 @@ export default {
 #logout {
   cursor: pointer;
   margin-left: 10px;
-  color: #0f3057;
+  color: var(--clr-dark);
 }
 </style>
