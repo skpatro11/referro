@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-nav">
+  <div class="dashboard-nav mb-4">
     <div class="dashboard-actions">
       <router-link class="router" :to="{ name: 'Overview' }"
         >Overview</router-link

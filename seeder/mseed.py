@@ -7,11 +7,11 @@ f = open('seeder/members.json',)
 
 data = json.load(f)
 
-list = ['F23478EAEC', '64630D2D87', '44BB9EDF96', '1503C375C1']
+list = ['D01EBBC7A7', '6163CA34BE']
 
 for i in data:
     try:
-        program = Program.objects.get(id=list[random.randint(0, 3)])
+        program = Program.objects.get(id=list[random.randint(0, 1)])
         member = Member.objects.create(program=program, username=i['email'])
         print(member.id)
     except Program.DoesNotExist:

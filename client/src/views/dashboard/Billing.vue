@@ -1,6 +1,6 @@
 <template>
   <DashboardNav />
-  <div>Billing</div>
+  <div>Billing build in progress</div>
 </template>
 
 <script>
