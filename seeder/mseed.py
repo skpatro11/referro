@@ -7,7 +7,7 @@ f = open('seeder/members.json',)
 
 data = json.load(f)
 
-list = ['F23478EAEC', '64630D2D87', '44BB9EDF96', '1503C375C1']
+list = ['D86791EE16', '7E0F97F3E3', '613AA568A0', '326FD8931D']
 
 for i in data:
     try:
