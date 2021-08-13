@@ -53,7 +53,7 @@
 
 <script>
 export default {
-  props: ["members", "prev", "next"],
+  props: ["members"],
 };
 </script>
 
