@@ -2,46 +2,52 @@
   <div class="auth-container rounded text-start mx-auto mt-5">
     <h2 class="mb-4">Sign in to your account</h2>
     <form class="d-flex flex-column" @submit.prevent="handleLogin">
-    <div class="mb-3 text-start">
-      <label class="form-label" for="email">Email</label>
-      <input class="form-control" type="email" required v-model="email" />
-    </div>
-    <div class="mb-3 text-start">
-      <label class="form-label" for="password">Password</label>
-      <input class="form-control" type="password" required v-model="password" />
-    </div>
-    <div class="error">{{ error }}</div>
-    <button class="btn mt-3">Log in</button>
-  </form>
+      <div class="mb-3 text-start">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-control" type="email" required v-model="email" />
+      </div>
+      <div class="mb-3 text-start">
+        <label class="form-label" for="password">Password</label>
+        <input
+          class="form-control"
+          type="password"
+          required
+          v-model="password"
+        />
+      </div>
+      <div class="error">{{ error }}</div>
+      <button class="btn mt-3">Log in</button>
+    </form>
   </div>
 </template>
 
 <script>
 export default {
-    data () {
+  data() {
     return {
-      email: '',
-      password: '',
-      error: null
-    }
+      email: "",
+      password: "",
+      error: null,
+    };
   },
   methods: {
-    handleLogin () {
+    handleLogin() {
       this.$store
-        .dispatch('login', {
+        .dispatch("login", {
           email: this.email,
-          password: this.password
+          password: this.password,
         })
         .then(() => {
-          this.$store.dispatch('setUser')
-          this.$router.push({ name: 'Overview' })
+          this.$store.dispatch("setUser");
+          this.$router.push({ name: "Overview" });
         })
-        .catch(err => {
-          this.error = err.response.data.error
-        })
-    }
-  }
-}
+        .catch((err) => {
+          // this.error = err.response.data.error;
+          this.error = "Invalid User Credentials";
+        });
+    },
+  },
+};
 </script>
 
 <style>

@@ -2,21 +2,20 @@
   <div>
     <DashboardNav />
     <div class="programs">
-      <div
-        class="program"
-        v-for="program in programs"
-        :key="program.id"
-        @click="fetchMembers(program.id)"
-        :class="[selectedProgram === program.id ? 'selected' : '']"
-      >
-        {{ program.name }}
-      </div>
+      <ProgramList
+        :programs="programs"
+        :selectedProgram="selectedProgram"
+        @selected="fetchMembers"
+      />
     </div>
     <div v-if="showTable">
       <MemberTable :members="members" />
     </div>
-    <div v-else>
+    <div v-else-if="runSpinner">
       <Spinner />
+    </div>
+    <div v-else>
+      <h3>There is no information Available</h3>
     </div>
     <div id="page">
       <button
@@ -41,6 +40,7 @@
 import DashboardNav from "../../components/dashboard/DashboardNav.vue";
 import MemberTable from "../../components/dashboard/members/MemberTable.vue";
 import Spinner from "../../components/Spinner.vue";
+import ProgramList from "../../components/dashboard/ProgramList.vue";
 import axios from "axios";
 
 export default {
@@ -48,6 +48,7 @@ export default {
     DashboardNav,
     MemberTable,
     Spinner,
+    ProgramList,
   },
   data() {
     return {
@@ -57,6 +58,7 @@ export default {
       previous: null,
       next: null,
       selectedProgram: null,
+      runSpinner: true,
     };
   },
   async mounted() {
@@ -67,10 +69,11 @@ export default {
 
     this.programs = res.data;
 
-    if (this.programs) {
+    if (this.programs.length !== 0) {
       this.fetchMembers(this.programs[0].id);
       this.selectedProgram = this.programs[0].id;
     }
+    this.runSpinner = false;
   },
   methods: {
     async fetchMembers(id) {
