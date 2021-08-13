@@ -1,11 +1,15 @@
-body {
-  background: #eefff7;
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+
 :root {
   --clr-bg: hsla(152, 100%, 97%, 1);
   --clr-primary: hsla(152, 100%, 93%, 1);
   --clr-text: hsla(152, 100%, 22%, 1);
   --clr-dark: hsla(152, 100%, 10%, 1);
+  --clr-primary-text: #00587a;
+}
+body {
+  background: var(--clr-bg);
+  font-family: "Poppins", sans-serif;
 }
 * {
   margin: 0;

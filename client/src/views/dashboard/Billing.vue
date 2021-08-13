@@ -1,10 +1,10 @@
 <template>
   <DashboardNav />
-  <div>Supports</div>
+  <div>Billing</div>
 </template>
 
 <script>
-import DashboardNav from "../DashboardNav.vue";
+import DashboardNav from "../../components/dashboard/DashboardNav.vue";
 
 export default {
   components: {
@@ -13,5 +13,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

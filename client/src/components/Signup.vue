@@ -1,29 +1,19 @@
 <template>
-  <form @submit.prevent="handleSubmit">
-    <div class="input-field">
-      <label for="username">Username</label>
-      <input
-        type="text"
-        required
-        placeholder="display name"
-        v-model="displayName"
-      />
+  <form class="d-flex flex-column" @submit.prevent="handleSubmit">
+    <div class="mb-3">
+      <label class="form-label" for="username">Username</label>
+      <input class="form-control" type="text" required v-model="displayName" />
     </div>
-    <div class="input-field">
-      <label for="email">Email</label>
-      <input type="email" required placeholder="email" v-model="email" />
+    <div class="mb-3">
+      <label class="form-label" for="email">Email</label>
+      <input class="form-control" type="email" required v-model="email" />
     </div>
-    <div class="input-field">
-      <label for="password">Password</label>
-      <input
-        type="password"
-        required
-        placeholder="password"
-        v-model="password"
-      />
+    <div class="mb-3">
+      <label class="form-label" for="password">Password</label>
+      <input class="form-control" type="password" required v-model="password" />
     </div>
     <div class="error">{{ error }}</div>
-    <button>Sign up</button>
+    <button class="mt-3">Sign up</button>
   </form>
 </template>
 

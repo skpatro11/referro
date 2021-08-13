@@ -18,6 +18,7 @@
 export default {
   name: "Home",
   components: {},
+
 };
 </script>
 
@@ -45,6 +46,7 @@ export default {
 }
 #getting-started {
   cursor: pointer;
+  font-size: 15px;
 
   display: flex;
   flex-direction: row;
@@ -53,7 +55,7 @@ export default {
   padding: 8px 81px;
 
   position: static;
-  width: 234px;
+  width: 250px;
   height: 50px;
   left: 0px;
   top: 408px;
