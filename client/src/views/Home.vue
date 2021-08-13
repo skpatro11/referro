@@ -3,7 +3,9 @@
     <div class="hero text-center">
       <div class="my-5">
         <h1>Complete Referral System <br />for your Business</h1>
-        <a class="btn hero-btn mt-5" href="#">Get Started</a>
+        <a @click="handleGetstarted" class="btn hero-btn mt-5" href="#"
+          >Get Started</a
+        >
       </div>
       <img src="../assets/hero-image.png" class="img-fluid" />
     </div>
@@ -46,6 +48,11 @@ import ProcessAlter from "../components/home/ProcessAlter.vue";
 export default {
   name: "Home",
   components: { Process, ProcessAlter },
+  methods: {
+    handleGetstarted() {
+      this.$router.push({ name: "Programs" });
+    },
+  },
 };
 </script>
 

@@ -10,14 +10,15 @@
       <router-link to="/about">About</router-link>
       <router-link to="/docs">Docs</router-link>
       <router-link v-if="!loggedIn" to="/auth/login">Login</router-link>
-      <span v-if="loggedIn" id="logout" @click="handleLogout"
-        >Logout
+      <span v-if="loggedIn" id="logout">
+        <span @click="handleLogout">Logout</span>
+        <img class="mx-2" src="../assets/Frame-2.svg" alt="" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
           fill="currentColor"
-          class="bi bi-box-arrow-right"
+          class="bi bi-box-arrow-right d-none"
           viewBox="0 0 16 16"
         >
           <path
