@@ -20,9 +20,9 @@
 </template>
 
 <script>
-import DashboardNav from "../DashboardNav.vue";
-import OrderTable from "../OrderTable.vue";
-import Spinner from "../Spinner.vue";
+import DashboardNav from "../../components/DashboardNav.vue";
+import OrderTable from "../../components/OrderTable.vue";
+import Spinner from "../../components/Spinner.vue";
 import axios from "axios";
 
 export default {
@@ -41,9 +41,6 @@ export default {
   },
   async mounted() {
     const res = await axios.get("https://referro.herokuapp.com/programs/", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
     });
 
     this.programs = res.data;

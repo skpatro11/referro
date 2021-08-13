@@ -3,7 +3,7 @@
     <div class="brand">Referro</div>
     <div class="actions">
       <router-link to="/">Home</router-link>
-      <router-link to="/auth">Login</router-link>
+      <router-link to="/auth/login">Login</router-link>
       <router-link to="/dashboard/programs">Dashboard</router-link>
       <router-link to="/about">About</router-link>
       <span id="logout" @click="handleLogout"
@@ -38,9 +38,7 @@ export default {
   },
   methods: {
     handleLogout() {
-      this.isAuthenticated = false;
-      this.$store.state.isAuthenticated = false;
-      localStorage.removeItem("token");
+      this.$store.dispatch('logout')
       this.$router.push({ name: "Home" });
     },
   },

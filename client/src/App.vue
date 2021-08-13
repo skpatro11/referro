@@ -12,6 +12,13 @@ export default {
   components: {
     Nav,
   },
+  created() {
+    const tokenString = localStorage.getItem('token')
+    if (tokenString) {
+      this.$store.commit('SET_AUTH_TOKEN', tokenString)
+      this.$store.dispatch('setUser')
+    }
+  }
 };
 </script>
 

@@ -12,7 +12,19 @@
 </template>
 
 <script>
-export default {};
+import axios from 'axios';
+
+export default {
+  // mounted() {
+  //   axios.get('https://referro.herokuapp.com/authentication/profile/')
+  //     .then(({data}) => {
+  //       console.log(data)
+  //     })
+  //     .catch(err => {
+  //       console.log(err)
+  //     })
+  // }
+};
 </script>
 
 <style scoped>

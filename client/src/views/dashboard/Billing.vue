@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import DashboardNav from "../DashboardNav.vue";
+import DashboardNav from "../../components/DashboardNav.vue";
 
 export default {
   components: {
