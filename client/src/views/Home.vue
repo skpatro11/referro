@@ -1,76 +1,102 @@
 <template>
-  <div class="home">
-    <div class="home-header">
-      <h1 class="moto">Referral Incentive Made Easy</h1>
-      <p class="description">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique enim
-        fugiat beatae sed omnis dolorem error numquam facilis dignissimos
-        officiis totam, liberes?
-      </p>
-      <button id="getting-started">Get Started</button>
+  <div>
+    <div class="hero text-center">
+      <div class="my-5">
+        <h1>Complete Referral System <br />for your Business</h1>
+        <a class="btn hero-btn mt-5" href="#">Get Started</a>
+      </div>
+      <img src="../assets/hero-image.png" class="img-fluid" />
+    </div>
+    <div class="our-process">
+      <h2 class="my-5">Our Process</h2>
+      <Process
+        image="program-illus.png"
+        step="1"
+        title="Create a Referral Scheme"
+        desc="A company can create a program to make a referral scheme for an organisation. There can be multiple programs i.e. different types of referral scheme for a single organisation"
+      />
+      <ProcessAlter
+        image="access-token-illus.png"
+        step="2"
+        title="Generate Access Token"
+        desc="After a referral program has been created, the user can generate a access token to obtain the access to the api and connect with our server.
+An individual or organization can manage the referral program with the help of access token."
+      />
+      <Process
+        image="member-illus.png"
+        step="3"
+        title="Referers are added"
+        desc="A member i.e. referrer can be created automatically during the signup process or manually through a link afterwards using our service. The member will get a unique id through which other user can be referrerd."
+      />
+      <ProcessAlter
+        image="orders-illus.png"
+        step="4"
+        title="Rewards is claimed"
+        desc="When a user is sucessfully referred an order will be generated automatically through which the member/referrer can claim their rewards."
+      />
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import Process from "../components/home/Process.vue";
+import ProcessAlter from "../components/home/ProcessAlter.vue";
 
 export default {
   name: "Home",
-  components: {},
+  components: { Process, ProcessAlter },
 };
 </script>
 
 <style>
-.home-header {
-  /* border: 2px solid black; */
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-  justify-content: center;
+.hero {
+  margin-top: 5em;
+}
+.hero h1 {
+  font-size: 3.75rem;
+  color: var(--clr-text);
+  font-weight: 700;
+}
+
+.hero .hero-btn {
+  padding: 1em 3em;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: var(--clr-text);
+  color: var(--clr-bg);
+}
+
+.our-process {
+  margin-top: 5em;
+}
+
+.our-process h2 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.our-process h4 {
+  font-size: 2rem;
+  color: var(--clr-text);
+}
+
+.our-process p {
+  color: var(--clr-text);
+  line-height: 32px;
+}
+
+.our-process .step-circle {
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  background: var(--clr-text);
+  color: var(--clr-bg);
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.process-content {
   width: 50%;
-  text-align: left;
-  margin-left: 5%;
-}
-.moto {
-  color: #00587a;
-  font-size: 60px;
-  font-weight: bold;
-  margin: 20px 0px;
-}
-.description {
-  font-size: 18px;
-  color: #00587a;
-  letter-spacing: 1px;
-}
-#getting-started {
-  cursor: pointer;
-  font-size: 15px;
-
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 8px 81px;
-
-  position: static;
-  width: 250px;
-  height: 50px;
-  left: 0px;
-  top: 408px;
-
-  background: #00587a;
-  color: white;
-  border: none;
-  box-shadow: 0px 7px 16px rgba(0, 88, 122, 0.1),
-    0px 4px 9px rgba(0, 88, 122, 0.2);
-  border-radius: 5px;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  margin: 31px 0px;
 }
 </style>
