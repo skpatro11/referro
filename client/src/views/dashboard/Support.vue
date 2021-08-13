@@ -1,6 +1,6 @@
 <template>
   <DashboardNav />
-  <div>Supports</div>
+  <div>Support build in progress</div>
 </template>
 
 <script>

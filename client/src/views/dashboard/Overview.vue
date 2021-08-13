@@ -1,7 +1,7 @@
 <template>
   <div>
     <DashboardNav />
-    <div>Hi,</div>
+    <div>Overview Build In Progress</div>
   </div>
 </template>
 
