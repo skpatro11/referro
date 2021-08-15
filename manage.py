@@ -7,11 +7,11 @@ import sys
 def main():
     """Run administrative tasks."""
 
-    if 'ENV' in os.environ:
-        if os.environ['ENV'] == 'production':
-            os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'referro.settings.production')
-    else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'referro.settings.local')
+    # if 'ENV' in os.environ:
+    #     if os.environ['ENV'] == 'production':
+    #         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'referro.settings.production')
+    # else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'referro.settings.local')
 
     try:
         from django.core.management import execute_from_command_line
