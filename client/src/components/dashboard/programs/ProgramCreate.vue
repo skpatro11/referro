@@ -29,13 +29,14 @@
                 aria-label="Close"
               ></button>
             </div>
-            <form>
+            <form @submit.prevent="createProgram">
               <div class="mb-3">
                 <label for="program-name" class="form-label"
                   >Program Name</label
                 >
                 <input
                   type="text"
+                  v-model="name"
                   class="form-control input-field"
                   id="program-name"
                 />
@@ -43,7 +44,8 @@
               <div class="mb-3">
                 <label for="incentive" class="form-label">Incentive</label>
                 <input
-                  type="incentive"
+                  v-model="incentive"
+                  type="number"
                   class="form-control input-field"
                   id="password"
                 />
@@ -58,7 +60,29 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  data() {
+    return {
+      name: null,
+      incentive: null,
+    };
+  },
+  methods: {
+    async createProgram() {
+      const res = await axios.post(
+        `${process.env.VUE_APP_ROOT_API}/programs/`,
+        {
+          name: this.name,
+          incentive: parseFloat(this.incentive),
+        }
+      );
+
+      console.log(res.data);
+    },
+  },
+};
 </script>
 
 <style scoped>
