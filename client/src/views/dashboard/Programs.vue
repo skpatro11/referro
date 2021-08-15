@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="">
     <DashboardNav />
+    <ProgramCreate />
     <div v-if="programs.length">
       <div class="programs" v-for="program in programs" :key="program.id">
         <ProgramCard :program="program" />
@@ -18,6 +19,7 @@
 <script>
 import DashboardNav from "../../components/dashboard/DashboardNav.vue";
 import ProgramCard from "../../components/dashboard/programs/ProgramCard.vue";
+import ProgramCreate from "../../components/dashboard/programs/ProgramCreate.vue";
 import Spinner from "../../components/Spinner.vue";
 import axios from "axios";
 
@@ -25,6 +27,7 @@ export default {
   components: {
     DashboardNav,
     ProgramCard,
+    ProgramCreate,
     Spinner,
   },
   data() {
@@ -44,5 +47,5 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 </style>

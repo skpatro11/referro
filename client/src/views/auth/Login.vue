@@ -4,12 +4,17 @@
     <form class="d-flex flex-column" @submit.prevent="handleLogin">
       <div class="mb-3 text-start">
         <label class="form-label" for="email">Email</label>
-        <input class="form-control" type="email" required v-model="email" />
+        <input
+          class="form-control input-field"
+          type="email"
+          required
+          v-model="email"
+        />
       </div>
       <div class="mb-3 text-start">
         <label class="form-label" for="password">Password</label>
         <input
-          class="form-control"
+          class="form-control input-field"
           type="password"
           required
           v-model="password"
@@ -64,12 +69,6 @@ export default {
 }
 .auth-container label {
   color: rgba(0, 112, 59, 0.9);
-}
-.auth-container input {
-  background: #b5ffdc;
-  padding: 0.6em 1em;
-  color: var(--clr-text);
-  border: none;
 }
 .auth-container button {
   background: var(--clr-text);
