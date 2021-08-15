@@ -1,24 +1,21 @@
 <template>
   <div class="mb-3">
     <DashboardNav />
-    <div class="programs">
-      <div
-        class="program"
-        v-for="program in programs"
-        :key="program.id"
-        @click="fetchOrders(program.id)"
-        :class="[selectedProgram === program.id ? 'selected' : '']"
-      >
-        {{ program.name }}
-      </div>
-    </div>
+    <ProgramList
+      :programs="programs"
+      :selectedProgram="selectedProgram"
+      @selected="fetchOrders"
+    />
     <div v-if="showTable">
       <OrderTable :orders="orders" />
     </div>
-    <div v-else>
+    <div v-else-if="runSpinner">
       <Spinner />
     </div>
-    <div id="page">
+    <div v-else>
+      <h3>There is no information Available</h3>
+    </div>
+    <div class="page">
       <button
         class="btn btn-sm btn-outline-success"
         v-if="previous"
@@ -41,6 +38,7 @@
 import DashboardNav from "../../components/dashboard/DashboardNav.vue";
 import OrderTable from "../../components/dashboard/orders/OrderTable.vue";
 import Spinner from "../../components/Spinner.vue";
+import ProgramList from "../../components/dashboard/ProgramList.vue";
 import axios from "axios";
 
 export default {
@@ -48,6 +46,7 @@ export default {
     DashboardNav,
     OrderTable,
     Spinner,
+    ProgramList,
   },
   data() {
     return {
@@ -57,6 +56,7 @@ export default {
       orders: [],
       showTable: false,
       selectedProgram: null,
+      runSpinner: true,
     };
   },
   async mounted() {
@@ -66,10 +66,11 @@ export default {
     );
 
     this.programs = res.data;
-    if (this.programs) {
+    if (this.programs.length !== 0) {
       this.fetchOrders(this.programs[0].id);
       this.selectedProgram = this.programs[0].id;
     }
+    this.runSpinner = false;
   },
   methods: {
     async fetchOrders(id) {
@@ -110,4 +111,13 @@ export default {
 </script>
 
 <style>
+.page {
+  margin: 10px auto;
+  display: flex;
+  width: 20%;
+  height: 40px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
 </style>

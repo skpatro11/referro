@@ -46,7 +46,7 @@ export default createStore({
       axios
         .get(`${process.env.VUE_APP_ROOT_API}/authentication/profile/`)
         .then(({ data }) => commit('SET_USER_DATA', data))
-        .catch((err) => console.log('Unable to set user data'));
+        .catch((err) => 'Refresh Token Invalid');
     },
   },
   modules: {},

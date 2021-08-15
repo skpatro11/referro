@@ -1,24 +1,21 @@
 <template>
   <div>
     <DashboardNav />
-    <div class="programs">
-      <div
-        class="program"
-        v-for="program in programs"
-        :key="program.id"
-        @click="fetchMembers(program.id)"
-        :class="[selectedProgram === program.id ? 'selected' : '']"
-      >
-        {{ program.name }}
-      </div>
-    </div>
+    <ProgramList
+      :programs="programs"
+      :selectedProgram="selectedProgram"
+      @selected="fetchMembers"
+    />
     <div v-if="showTable">
       <MemberTable :members="members" />
     </div>
-    <div v-else>
+    <div v-else-if="runSpinner">
       <Spinner />
     </div>
-    <div id="page">
+    <div v-else>
+      <h3>There is no information Available</h3>
+    </div>
+    <div class="page">
       <button
         class="btn btn-sm btn-outline-success"
         v-if="previous"
@@ -41,6 +38,7 @@
 import DashboardNav from "../../components/dashboard/DashboardNav.vue";
 import MemberTable from "../../components/dashboard/members/MemberTable.vue";
 import Spinner from "../../components/Spinner.vue";
+import ProgramList from "../../components/dashboard/ProgramList.vue";
 import axios from "axios";
 
 export default {
@@ -48,6 +46,7 @@ export default {
     DashboardNav,
     MemberTable,
     Spinner,
+    ProgramList,
   },
   data() {
     return {
@@ -57,6 +56,7 @@ export default {
       previous: null,
       next: null,
       selectedProgram: null,
+      runSpinner: true,
     };
   },
   async mounted() {
@@ -67,10 +67,11 @@ export default {
 
     this.programs = res.data;
 
-    if (this.programs) {
+    if (this.programs.length !== 0) {
       this.fetchMembers(this.programs[0].id);
       this.selectedProgram = this.programs[0].id;
     }
+    this.runSpinner = false;
   },
   methods: {
     async fetchMembers(id) {
@@ -110,39 +111,4 @@ export default {
 </script>
 
 <style>
-.programs {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: row;
-}
-.program {
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0px 34px;
-  box-sizing: border-box;
-
-  position: static;
-  width: auto;
-  height: 35px;
-
-  background: linear-gradient(90deg, #dbffee 0%, rgba(219, 255, 238, 0) 100%);
-  border: 1px solid #a8ffd6;
-  box-sizing: border-box;
-  border-radius: 20px;
-
-  /* Inside Auto Layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
-  margin: 10px 10px;
-}
-.selected {
-  border: 1px solid #00587a;
-  color: #00587a;
-}
 </style>

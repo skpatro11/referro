@@ -7,15 +7,30 @@
   --clr-dark: hsla(152, 100%, 10%, 1);
   --clr-primary-text: #00587a;
 }
+
 body {
   background: var(--clr-bg);
   font-family: "Poppins", sans-serif;
 }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 button {
   border: none;
+}
+
+.input-field {
+  background: #b5ffdc;
+  padding: 0.6em 1em;
+  color: var(--clr-text);
+  border: none;
+}
+
+.form-control:focus {
+  background: #b5ffdc;
+  box-shadow: none;
 }
