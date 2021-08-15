@@ -222,6 +222,34 @@ class ProgramOrdersDetailView(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+class ProgramOrderDetailViewClaim(APIView):
+    permission_classes = (IsAuthenticated, IsOwner)
+
+    def get_program(self, program_id):
+        try:
+            program = Program.objects.get(id=program_id)
+            self.check_object_permissions(self.request, program)
+            return program
+        except Program.DoesNotExist:
+            return Response(data={'detail': 'Program Does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    def get_object(self, id):
+        try:
+            return Order.objects.get(id=id)
+        except Order.DoesNotExist:
+            raise Http404
+
+    def get(self, request, program_id, pk, format=None):
+        program = self.get_program(program_id)
+        order = self.get_object(pk)
+        if not order.program.id == program_id:
+            return Response({'detail': 'Request Denied'}, status=status.HTTP_403_FORBIDDEN)
+        order.status = 'Claimed'
+        order.save()
+        serializer = OrderSerializer(order)
+        return Response(serializer.data)
+
+
 @api_view(('GET',))
 def access_token(request, program_id):
     try:

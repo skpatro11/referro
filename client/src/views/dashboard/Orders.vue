@@ -1,13 +1,11 @@
 <template>
   <div class="mb-3">
     <DashboardNav />
-    <div class="programs">
-      <ProgramList
-        :programs="programs"
-        :selectedProgram="selectedProgram"
-        @selected="fetchOrders"
-      />
-    </div>
+    <ProgramList
+      :programs="programs"
+      :selectedProgram="selectedProgram"
+      @selected="fetchOrders"
+    />
     <div v-if="showTable">
       <OrderTable :orders="orders" />
     </div>
