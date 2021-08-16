@@ -29,7 +29,7 @@
                 aria-label="Close"
               ></button>
             </div>
-            <form @submit.prevent="createProgram">
+            <form @submit="createProgram">
               <div class="mb-3">
                 <label for="program-name" class="form-label"
                   >Program Name</label
@@ -39,6 +39,7 @@
                   v-model="name"
                   class="form-control input-field"
                   id="program-name"
+                  required="true"
                 />
               </div>
               <div class="mb-3">
@@ -48,6 +49,7 @@
                   type="number"
                   class="form-control input-field"
                   id="password"
+                  required="true"
                 />
               </div>
               <button type="submit" class="btn mt-2">Create</button>
