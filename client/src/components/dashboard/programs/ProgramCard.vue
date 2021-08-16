@@ -7,9 +7,9 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
-          <div class="modal-body">
+          <div class="modal-body text-start">
             <div class="d-flex justify-content-between">
               <h2 class="mb-4">Edit a referral program {{ program.name }}</h2>
               <button
@@ -63,29 +63,6 @@
         >
           <h5>{{ program.name }}</h5>
           <p>₹{{ program.incentive }}</p>
-          <button
-            id="editProgram"
-            class="btn-underline-sm ms-2"
-            data-bs-toggle="modal"
-            :data-bs-target="['#' + program.id]"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-pencil-square"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-              />
-            </svg>
-          </button>
         </div>
         <div class="card__body mt-1" v-show="program.access_token">
           <div class="d-flex align-items-baseline">
@@ -98,9 +75,54 @@
               Re-generate
             </button>
           </div>
-          <div class="d-flex align-items-baseline mt-1">
-            <span class="access_token">{{ program.access_token }}</span>
-            <button href="#" class="btn-sm ms-4">COPY</button>
+          <div class="d-flex align-items-baseline justify-content-between mt-1">
+            <div class="d-flex align-items-baseline">
+              <span class="access_token">{{ program.access_token }}</span>
+              <button href="#" class="btn-sm ms-4">COPY</button>
+            </div>
+            <button
+              id="editProgram"
+              class="btn-underline-sm ms-2"
+              data-bs-toggle="modal"
+              :data-bs-target="['#' + program.id]"
+            >
+              <svg
+                width="21"
+                height="21"
+                viewBox="0 0 19 19"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0)">
+                  <path
+                    d="M8.75 3.5H3.5C3.10218 3.5 2.72064 3.65804 2.43934 3.93934C2.15804 4.22064 2 4.60218 2 5V15.5C2 15.8978 2.15804 16.2794 2.43934 16.5607C2.72064 16.842 3.10218 17 3.5 17H14C14.3978 17 14.7794 16.842 15.0607 16.5607C15.342 16.2794 15.5 15.8978 15.5 15.5V10.25"
+                    stroke="#00703B"
+                    stroke-opacity="0.7"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M14.375 2.37499C14.6734 2.07663 15.078 1.909 15.5 1.909C15.922 1.909 16.3266 2.07663 16.625 2.37499C16.9234 2.67336 17.091 3.07804 17.091 3.49999C17.091 3.92195 16.9234 4.32663 16.625 4.62499L9.5 11.75L6.5 12.5L7.25 9.49999L14.375 2.37499Z"
+                    stroke="#00703B"
+                    stroke-opacity="0.7"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0">
+                    <rect
+                      width="18"
+                      height="18"
+                      fill="white"
+                      transform="translate(0.5 0.5)"
+                    />
+                  </clipPath>
+                </defs>
+              </svg>
+            </button>
           </div>
         </div>
         <div v-show="!program.access_token">
