@@ -27,12 +27,9 @@ INSTALLED_APPS = [
     # Apps
     'home.apps.HomeConfig',
     'authentication.apps.AuthenticationConfig',
-    'core.apps.CoreConfig',
-    'incentive.apps.IncentiveConfig',
     'members.apps.MembersConfig',
     'orders.apps.OrdersConfig',
     'programs.apps.ProgramsConfig',
-    'public.apps.PublicConfig',
 ]
 
 MIDDLEWARE = [

@@ -18,4 +18,8 @@ class Member(models.Model):
         super(Member, self).save(*args, **kwargs)
 
     def __str__(self) -> str:
-        return self.id
+        return self.id + self.username
+
+    class Meta:
+        db_table = 'members'
+        ordering = ('created_at',)

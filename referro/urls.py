@@ -18,9 +18,12 @@ from django.urls import path
 from django.urls.conf import include
 
 urlpatterns = [
-    path('api/', include('home.urls')),
+    path('api/home/', include('home.urls')),
     path('admin/', admin.site.urls),
-    path('api/public/', include('public.urls')),
+    # path('api/public/', include('public.urls')),
     path('api/authentication/', include('authentication.urls')),
-    path('api/programs/', include('programs.urls'))
+    path('api/programs/', include('programs.urls')),
+
+    # Custom
+    path('api/', include('api.urls')),
 ]

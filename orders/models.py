@@ -22,3 +22,7 @@ class Order(models.Model):
 
     def __str__(self) -> str:
         return str(self.id)
+
+    class Meta:
+        db_table = 'orders'
+        ordering = ('created_at',)

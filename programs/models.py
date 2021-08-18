@@ -28,3 +28,7 @@ class Program(models.Model):
         self.access_token = uuid.uuid4()
         self.save()
         return str(self.access_token)
+
+    class Meta:
+        db_table = 'programs'
+        ordering = ('created_at',)
