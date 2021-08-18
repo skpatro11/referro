@@ -2,8 +2,8 @@ from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import permissions
 from .serializers import OrderSerializer, OrderDetailSerializer
+from .permissions import IsOwner
 from orders.models import Order
-from programs.models import Program
 
 
 class OrderList(generics.ListAPIView):
@@ -30,7 +30,7 @@ class OrderCreate(generics.CreateAPIView):
 
 class OrderDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrderSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = (permissions.IsAuthenticated, IsOwner)
     queryset = Order.objects.all()
 
     def retrieve(self, request, *args, **kwargs):
