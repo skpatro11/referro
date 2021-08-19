@@ -14,5 +14,4 @@ def programs_detail_count(request):
             'members': p.get_member_count(),
             'orders': p.get_order_count()
         }
-    print(context)
     return Response(data=context)
