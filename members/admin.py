@@ -4,4 +4,4 @@ from .models import Member
 
 @admin.register(Member)
 class MemberAdmin(admin.ModelAdmin):
-    list_display = ('id', 'username', 'program')
+    list_display = ('id', 'username', 'program', 'created_at')
