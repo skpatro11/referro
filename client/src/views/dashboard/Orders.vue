@@ -61,21 +61,21 @@ export default {
   },
   async mounted() {
     const res = await axios.get(
-      `${process.env.VUE_APP_ROOT_API}/programs/`,
+      `${process.env.VUE_APP_ROOT_API}/v1/programs/`,
       {}
     );
 
-    this.programs = res.data;
+    this.programs = res.data.results;
     if (this.programs.length !== 0) {
-      this.fetchOrders(this.programs[0].id);
       this.selectedProgram = this.programs[0].id;
+      this.fetchOrders(this.programs[0].id);
     }
     this.runSpinner = false;
   },
   methods: {
     async fetchOrders(id) {
       const res = await axios.get(
-        `${process.env.VUE_APP_ROOT_API}/programs/${id}/orders/`,
+        `${process.env.VUE_APP_ROOT_API}/v1/orders/list/?program_id=${id}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),

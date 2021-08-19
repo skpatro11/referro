@@ -127,7 +127,7 @@ export default {
   methods: {
     async generateToken() {
       const res = await axios.get(
-        `${process.env.VUE_APP_ROOT_API}/programs/access_token/${this.program.id}/`
+        `${process.env.VUE_APP_ROOT_API}/v1/programs/${this.program.id}/access_token/`
       );
       this.program.access_token = res.data.access_token;
     },

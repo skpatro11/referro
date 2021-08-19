@@ -74,7 +74,7 @@ export default {
   methods: {
     async createProgram() {
       const res = await axios.post(
-        `${process.env.VUE_APP_ROOT_API}/programs/`,
+        `${process.env.VUE_APP_ROOT_API}/v1/programs/`,
         {
           name: this.name,
           incentive: parseFloat(this.incentive),

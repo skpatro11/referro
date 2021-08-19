@@ -12,7 +12,7 @@ class MemberProgramSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Member
-        fields = ('id', 'program', 'username', 'created_at')
+        fields = ('id', 'program', 'username', 'created_at', 'is_active')
 
 class MemberSerializer(serializers.ModelSerializer):
     class Meta:

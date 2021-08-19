@@ -61,22 +61,22 @@ export default {
   },
   async mounted() {
     const res = await axios.get(
-      `${process.env.VUE_APP_ROOT_API}/programs/`,
+      `${process.env.VUE_APP_ROOT_API}/v1/programs/`,
       {}
     );
 
-    this.programs = res.data;
+    this.programs = res.data.results;
 
     if (this.programs.length !== 0) {
-      this.fetchMembers(this.programs[0].id);
       this.selectedProgram = this.programs[0].id;
+      this.fetchMembers(this.programs[0].id);
     }
     this.runSpinner = false;
   },
   methods: {
     async fetchMembers(id) {
       const res = await axios.get(
-        `${process.env.VUE_APP_ROOT_API}/programs/${id}/members`,
+        `${process.env.VUE_APP_ROOT_API}/v1/members/list/?program_id=${id}`,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("token"),

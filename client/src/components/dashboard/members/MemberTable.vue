@@ -9,7 +9,7 @@
     <tr v-for="member in members" :key="member.id">
       <td>{{ member.id }}</td>
       <td>{{ member.username }}</td>
-      <td>{{ member.program }}</td>
+      <td>{{ member.created_at.substring(0, 10) }}</td>
       <td v-if="member.is_active" class="text-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

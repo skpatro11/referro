@@ -38,10 +38,10 @@ export default {
   },
   async mounted() {
     const res = await axios.get(
-      `${process.env.VUE_APP_ROOT_API}/programs/`,
+      `${process.env.VUE_APP_ROOT_API}/v1/programs/`,
       {}
     );
-    this.programs = res.data;
+    this.programs = res.data.results;
     this.runSpinner = false;
   },
 };

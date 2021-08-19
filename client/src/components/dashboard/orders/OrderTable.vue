@@ -9,8 +9,8 @@
       <th>Created On</th>
     </tr>
     <tr v-for="order in orders" :key="order.id">
-      <td>{{ order.member }}</td>
-      <td>{{ order.program }}</td>
+      <td>{{ order.member.id }}</td>
+      <td>{{ order.program.name }}</td>
       <td>{{ order.claim_amount }}</td>
       <td>{{ order.charge_amount }}</td>
       <td>{{ order.status }}</td>

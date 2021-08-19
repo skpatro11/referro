@@ -32,7 +32,7 @@ export default createStore({
     login({ commit }, credentials) {
       return axios
         .post(
-          `${process.env.VUE_APP_ROOT_API}/authentication/token/`,
+          `${process.env.VUE_APP_ROOT_API}/auth/token/`,
           credentials
         )
         .then(({ data }) => {
@@ -44,7 +44,7 @@ export default createStore({
     },
     setUser({ commit }) {
       axios
-        .get(`${process.env.VUE_APP_ROOT_API}/authentication/profile/`)
+        .get(`${process.env.VUE_APP_ROOT_API}/auth/profile/`)
         .then(({ data }) => commit('SET_USER_DATA', data))
         .catch((err) => 'Refresh Token Invalid');
     },
