@@ -32,3 +32,9 @@ class Program(models.Model):
     class Meta:
         db_table = 'programs'
         ordering = ('created_at',)
+
+    def get_member_count(self):
+        return self.members.all().count()
+
+    def get_order_count(self):
+        return self.program_orders.all().count()

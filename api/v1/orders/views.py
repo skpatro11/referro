@@ -4,6 +4,8 @@ from rest_framework import permissions
 from .serializers import OrderSerializer, OrderDetailSerializer
 from .permissions import IsOwner
 from orders.models import Order
+from programs.models import Program
+from api.v1.exceptions import ProgramNotFound, ProgramIdNotFound
 
 
 class OrderList(generics.ListAPIView):
@@ -12,14 +14,14 @@ class OrderList(generics.ListAPIView):
     queryset = Order.objects.all()
 
     def get_queryset(self):
-        programs = self.request.user.programs.all()
-        queryset = None
-        for program in programs:
-            if queryset is None:
-                queryset = program.program_orders.all()
-            else:
-                queryset = queryset.union(program.program_orders.all())
-        return queryset
+        program_id = self.request.query_params.get('program_id')
+        if not program_id:
+            raise ProgramIdNotFound
+        try:
+            program = Program.objects.get(id=program_id)
+            return program.program_orders.all()
+        except Program.DoesNotExist:
+            raise ProgramNotFound
 
 
 class OrderCreate(generics.CreateAPIView):
