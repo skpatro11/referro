@@ -1,25 +1,37 @@
 <template>
-  <canvas ref="myGraph" id="myChart" width="500" height="500"></canvas>
+  <canvas ref="myGraph" id="myChart" width="1000" height="500"></canvas>
 </template>
 
 <script>
 export default {
-  props: ["data", "labels", "title"],
+  props: ["graphData"],
   data() {
     return {
       myChart: {},
       config: {},
     };
   },
+  watch: {
+    graphData: {
+      deep: true,
+      handler() {
+        console.log(this.graphData);
+        this.myChart.destroy();
+        this.load();
+      },
+    },
+  },
   methods: {
     async load() {
       try {
+        console.log(this.graphData);
+
         const data = {
-          labels: this.labels,
+          labels: this.graphData.labels,
           datasets: [
             {
               label: "phone pe",
-              data: this.data,
+              data: this.graphData.data,
               borderColor: "green",
               backgroundColor: "#B5FFDC",
             },
@@ -37,7 +49,7 @@ export default {
               },
               title: {
                 display: true,
-                text: this.title,
+                text: this.graphData.title,
               },
             },
           },
