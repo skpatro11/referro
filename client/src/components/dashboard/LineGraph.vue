@@ -1,5 +1,5 @@
 <template>
-  <canvas ref="myGraph" id="myChart" width="1000" height="500"></canvas>
+  <canvas ref="myGraph" id="myChart" width="1000" height="300"></canvas>
 </template>
 
 <script>
@@ -15,7 +15,6 @@ export default {
     graphData: {
       deep: true,
       handler() {
-        console.log(this.graphData);
         this.myChart.destroy();
         this.load();
       },
@@ -24,13 +23,11 @@ export default {
   methods: {
     async load() {
       try {
-        console.log(this.graphData);
-
         const data = {
           labels: this.graphData.labels,
           datasets: [
             {
-              label: "phone pe",
+              label: this.graphData.title,
               data: this.graphData.data,
               borderColor: "green",
               backgroundColor: "#B5FFDC",

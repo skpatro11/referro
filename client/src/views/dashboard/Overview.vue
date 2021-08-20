@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="members-overview">
+    <div class="members-overview mt-5">
       <ProgramList
         :programs="programs"
         :selectedProgram="selectedProgramForMember"
@@ -62,6 +62,7 @@ export default {
       programs: [],
       selectedProgramForOrder: null,
       selectedProgramForMember: null,
+      runSpinner: true,
       runSpinner1: true,
       runSpinner2: true,
       showOrderGraph: false,

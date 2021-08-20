@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import store from '../store'
 // Public
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
@@ -90,7 +91,8 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const loggedIn = localStorage.getItem("token");
+  // const loggedIn = localStorage.getItem("token");
+  const loggedIn = store.getters['loggedIn']
 
   if (to.matched.some((record) => record.meta.requiresAuth) && !loggedIn) {
     next("/auth/login");
