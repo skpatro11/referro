@@ -52,14 +52,6 @@ export default {
   mounted() {
     this.load();
   },
-  watch: {
-    labels: function(newVal, oldVal) {
-      console.log(oldVal)
-      console.log(newVal)
-
-      this.myChart.update()
-    }
-  }
 };
 </script>
 

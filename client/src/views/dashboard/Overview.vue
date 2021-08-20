@@ -65,11 +65,11 @@ export default {
       runSpinner: true,
       data: [10, 20, 15, 25, 50],
       labels: [
-        // "10/08/2021",
-        // "10/08/2021",
-        // "10/08/2021",
-        // "10/08/2021",
-        // "10/08/2021",
+        "10/08/2021",
+        "10/08/2021",
+        "10/08/2021",
+        "10/08/2021",
+        "10/08/2021",
       ],
       title: "Orders",
     };
@@ -79,7 +79,7 @@ export default {
       this.selectedProgramForOrder = id;
       axios.get(`${process.env.VUE_APP_ROOT_API}/v1/overview/programs/${id}/orders/stats`)
         .then(({data}) => {
-          // console.log(Object.keys(data))
+          console.log(Object.keys(data))
           this.labels = Object.keys(data)
         })
     },
